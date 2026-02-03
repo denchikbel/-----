@@ -12,4 +12,9 @@ async def main()-> None:
         format=config.log.format
     )
 
-bot = Bot(token = config.bot.token)    
+    bot = Bot(token = config.bot.token)
+    dp = Dispatcher()    
+    await bot.delete_webhook(drop_pending_updates=True)
+    await dp.start_polling(bot)
+
+asyncio.run(main())
